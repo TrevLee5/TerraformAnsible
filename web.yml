@@ -1,0 +1,11 @@
+--- # Bootstrap Webservers
+- hosts: apache
+  become: yes
+  remote_user: ec2-user
+  tasks:
+    - name: latest httpd installed
+      yum:
+        name: httpd
+        state: latest
+    - name: Make sure httpd is started now and at boot
+      service: name=httpd state=started enabled=yes
